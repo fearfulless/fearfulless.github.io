@@ -1,0 +1,50 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+</head>
+<style>
+	body{margin: 0;padding: 0;}
+	.stage{width: 350px;height:100px;position: absolute;margin: -50px -150px;left: 50%;top:50%; }
+	.p1{margin-bottom: 5px;color: coral;font-size: 18px;font-weight: bolder}
+	.star{
+		width:30px;height:30px;float:left;
+		background: url(./stars.png) no-repeat -30px 0;
+		cursor: pointer;
+	}
+	.p2{
+		font-size: 16px;color:coral;
+	}
+</style>
+<body>
+<div class="stage" id="stage">
+	<p class="p1">点击评分:</p>
+	<p id="p2" class="p2"></p>
+</div>
+<script>
+	var stage=document.getElementById('stage');
+	var STAR=new Array(10);
+	var p2=document.getElementById('p2');
+	for(var i=0;i<STAR.length;++i){
+		STAR[i]=document.createElement('span');
+		stage.appendChild(STAR[i]);
+		STAR[i].className='star';
+		STAR[i].index=i;
+		STAR[i].onclick=function(){
+			var k=this.index;
+			for(var j=0;j<STAR.length;++j){
+				for(var a=0;a<=k;a++)
+				STAR[a].style.backgroundPosition='0 0';
+				for(var b=k+1;b<STAR.length;++b){
+				STAR[b].style.backgroundPosition='-30px 0'
+				}
+			}
+			p2.innerText='您的评分为：'+(k+1)+'星';
+		}
+	}
+
+
+</script>
+</body>
+</html>
